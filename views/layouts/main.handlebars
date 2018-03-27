@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>
+		News Scraper
+    </title>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Materialize Javascript -->
+    <script src="assets/javascript/materialize.js"></script>
+    <script src="assets/javascript/init.js"></script>
+
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	
+</head>
+<body>
+
+    <nav class="lime darken-4" role="navigation">
+        <div class="nav-wrapper container">
+            <a id="logo-container" href="#" class="brand-logo">Mongo Scraper</a>
+            <ul class="right hide-on-med-and-down">
+            <li><a href="/">Home</a></li>
+            <li><a href="/articles">Saved Articles</a></li>
+            <li><a href='/scrape'><button class='waves-effect waves-light btn-larg'>Scrape New Articles</button></a></li>
+            </ul>
+    
+            <ul id="nav-mobile" class="side-nav">
+            <li><a href="#about">Home</a></li>
+            <li><a href="#portfolio">Saved Articles</a></li>
+            <li><a href='#graphic-design'><button class='waves-effect waves-light btn-larg'>Scrape New Articles</button></a></li>
+            </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+
+    <div id="index-banner" class="parallax-container">
+        <div class="section no-pad-bot">
+        </div>
+        <div class="parallax"><img src="./assets/images/coffee-cup-information-97050.jpg" alt="Unsplashed background img 1"></div>
+    </div>
+
+{{body}}
+
+<footer class="page-footer lime darken-4">
+<div class="container">
+    <div class="row">
+    <div class="col l6 s12">
+        {{!-- <h5 class="white-text" id='contact'>Github</h5> --}}
+        <p><a class='lime-text lighten-4' href='https://github.com/frankwichw/News-Scraper'>Github</a></p>
+    </div>
+</div>
+<div class="footer-copyright">
+    <div class="container">
+    Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+    </div>
+</div>
+</footer>
+</body>
+</html>
