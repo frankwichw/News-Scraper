@@ -1,5 +1,5 @@
 var scraper = require("../scripts/scrape.js");
-var Headline = require("../models/Headline.js");
+var Article = require("../models/Headline.js");
 
 module.exports = {
     scrape: function(callback){
@@ -23,7 +23,7 @@ module.exports = {
         Article.update({_id: query._id}, {$set: {saved: true}}, {}, callback);
     },
     findUnsavedArticles: function(callback){
-        Article.findMany({saved: false}, function(err, res){
+        Article.find({saved: false}, function(err, res){
             callback(res);
         });
     }
