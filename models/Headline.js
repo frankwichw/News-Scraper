@@ -17,6 +17,10 @@ var ArticleConstructor = new Schema({
       type: String,
       required: true
   },
+  saved: {
+      type: Boolean,
+      default: false
+  },
   // note store the note id from the note documents
   note: {
     type: Schema.Types.ObjectId,
