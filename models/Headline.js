@@ -7,11 +7,9 @@ var Schema = mongoose.Schema;
 var ArticleConstructor = new Schema({
   title: {
     type: String,
-    required: true
-  },
-  summary: {
-    type: String,
-    required: true
+    required: true,
+    // unique so that things aren't added more than once
+    unique: true
   },
   url: {
       type: String,

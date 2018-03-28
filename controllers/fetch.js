@@ -1,7 +1,30 @@
 var scraper = require("../scripts/scrape.js");
-
-var Headline = require("../models");
+var Headline = require("../models/Headline.js");
 
 module.exports = {
-    // needs to get request from button and 
+    scrape: function(callback){
+        Scrape(function(data){
+            var articleArray = data;
+                
+            Article.collection.insertMany(articleArray, function(err, res){
+                console.log(res);
+                callback(res);
+            });
+            
+        });
+    },
+    read: function(query, callback){
+        Article.find(query).then(function(err, res){
+            console.log(res);
+            callback(res);
+        })
+    },
+    saveArticle: function(query, callback){
+        Article.update({_id: query._id}, {$set: {saved: true}}, {}, callback);
+    },
+    findUnsavedArticles: function(callback){
+        Article.findMany({saved: false}, function(err, res){
+            callback(res);
+        });
+    }
 }
