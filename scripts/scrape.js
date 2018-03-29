@@ -7,7 +7,6 @@ var Scraper = function(callback) {
     // first grab the html url, getting all html inside
     request("https://www.nytimes.com/section/books?action=click&pgtype=Homepage&region=TopBar&module=HPMiniNav&contentCollection=Books&WT.nav=page", function(err, response) {
         var articleArray = [];
-        console.log("Scraper running");
 
         // use cheerio to load response data
         var $ = cheerio.load(response.body);

@@ -4,11 +4,10 @@ $(document).ready(function(){
 
     $(".button-scraper").on("click", function(){
         scrapeArticles();
-        // $('#modal1').modal('open');
+        $('#modal1').modal('open');
     });
 
     $(".save-button").on("click", function(){
-
 
     });
 
@@ -21,8 +20,12 @@ $(document).ready(function(){
 
     var renderArticles = function(){
         $(".article-div").empty();
-        $.get("api/getarticles").then(function(response) {
+        $.get("/api/unsaved").then(function(response) {
             console.log(response);
+            for (var i = 0; i < response.length; i++){
+                var html = "<div class='row'><div class='col s12 m12'><div class='card'><div class='card-content'><h3 class='left-align headline-text'><a href='" + response[i].url + "'>" + response[i].title + "</a></h3><a class='btn-floating btn-large waves-effect waves-light red save-button'><i class='material-icons' id='save-article'>add</i></a></div></div></div></div>";
+            }
+
         });
     }
 

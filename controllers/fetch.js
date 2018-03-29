@@ -7,8 +7,6 @@ module.exports = {
             var articleArray = data;
 
             Article.collection.insertMany(articleArray, function(err, res){
-                console.log("logging insertmany res");
-                console.log(res);
                 callback(err, res);
             });
             
@@ -17,15 +15,10 @@ module.exports = {
     read: function(query, callback){
         Article.find(query).then(function(err, res){
             console.log(res);
-            callback(res);
+            callback(err, res);
         })
     },
     saveArticle: function(query, callback){
         Article.update({_id: query._id}, {$set: {saved: true}}, {}, callback);
-    },
-    findUnsavedArticles: function(callback){
-        Article.find({saved: false}, function(err, res){
-            callback(res);
-        });
     }
 }

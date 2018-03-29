@@ -6,14 +6,10 @@ var ArticleController = require("../controllers/fetch.js");
 module.exports = function (app) {
     app.get("/", function(req, res){
         res.render("index");
-
     });
 
     app.get("/api/scrape", function(req, res){
-        console.log("api/scrape");
         ArticleController.scrape(function(err, articles){
-            console.log("\n\n------ articles below ------\n\n")
-            console.log(articles);
             if(articles) {
                 res.json({
                     response: "Scraped " + articles.insertedCount + " articles!"
@@ -27,11 +23,10 @@ module.exports = function (app) {
         });
     });
 
-    app.get("api/getarticles", function(req, res){
-        console.log("api/getarticles");
-        ArticleController.findUnsavedArticles(function(data){
+    app.get("/api/unsaved", function(req, res){
+        ArticleController.read(function(err, data){
             console.log(data);
             res.json(data);
         });
-    })
+    });
 };
