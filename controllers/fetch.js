@@ -1,14 +1,15 @@
-var scraper = require("../scripts/scrape.js");
+var Scraper = require("../scripts/scrape.js");
 var Article = require("../models/Headline.js");
 
 module.exports = {
     scrape: function(callback){
-        Scrape(function(data){
+        Scraper(function(data){
             var articleArray = data;
-                
+
             Article.collection.insertMany(articleArray, function(err, res){
+                console.log("logging insertmany res");
                 console.log(res);
-                callback(res);
+                callback(err, res);
             });
             
         });

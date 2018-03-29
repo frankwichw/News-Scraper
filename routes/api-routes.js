@@ -5,24 +5,33 @@ var ArticleController = require("../controllers/fetch.js");
 
 module.exports = function (app) {
     app.get("/", function(req, res){
-        // db.Article.find({ saved: false }, function(error, articles) {
-        //     if (error) {
-        //     console.log(error);
-        //     }
-        //     else {
-        //     res.render("index", articles);
-        //     }
-        // });
-        ArticleController.findUnsavedArticles(function(data){
-            console.log(data);
-            res.render("index", data);
+        res.render("index");
+
+    });
+
+    app.get("/api/scrape", function(req, res){
+        console.log("api/scrape");
+        ArticleController.scrape(function(err, articles){
+            console.log("\n\n------ articles below ------\n\n")
+            console.log(articles);
+            if(articles) {
+                res.json({
+                    response: "Scraped " + articles.insertedCount + " articles!"
+                })
+            } else {
+                res.json({
+                    response: "Couldn't find any new articles!"
+                });
+            }
+
         });
     });
 
-    app.get("/api/articles", function(req, res){
+    app.get("api/getarticles", function(req, res){
+        console.log("api/getarticles");
         ArticleController.findUnsavedArticles(function(data){
             console.log(data);
             res.json(data);
         });
-    });
+    })
 };

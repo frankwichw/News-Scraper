@@ -1,25 +1,29 @@
 $(document).ready(function(){
-    var scraper = require("../scripts/scrape.js");
+    // $('.fixed-action-btn').floatingActionButton();
+    $('.modal').modal();
 
     $(".button-scraper").on("click", function(){
-        $.get("/api/scrape").then(function(data) {
- 
-            clearPage();
-            
-          });
-        $('#modal1').modal('open');
+        scrapeArticles();
+        // $('#modal1').modal('open');
     });
-
-    $('.fixed-action-btn').floatingActionButton();
-    $('.modal').modal();
 
     $(".save-button").on("click", function(){
 
 
     });
 
-    var clearPage = function(){
-        $(".article-div").empty();
+    var scrapeArticles = function(){
+        $.get("/api/scrape").then(function(response) {
+            console.log(response);
+            renderArticles();
+        });
     };
+
+    var renderArticles = function(){
+        $(".article-div").empty();
+        $.get("api/getarticles").then(function(response) {
+            console.log(response);
+        });
+    }
 
 });
