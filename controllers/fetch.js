@@ -40,15 +40,13 @@ module.exports = {
         // });
 
         Note.create(query, function(err, res) {
-            // Log any errors
+            // log errors
             if (err) {
               console.log(err);
             }
-            // Or just log the doc we saved
+            // log result
             else {
               console.log(res);
-              // Place the log back in this callback function
-              // so it can be used with other functions asynchronously
               callback(res);
             }
         });
