@@ -20,10 +20,12 @@ var ArticleConstructor = new Schema({
       default: false
   },
   // note store the note id from the note documents
-  note: {
+  note: [
+    {
     type: Schema.Types.ObjectId,
     ref: "Note"
-  }
+    }
+  ]
 });
 
 // creating model from above schema

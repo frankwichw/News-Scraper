@@ -46,9 +46,16 @@ module.exports = function (app) {
     });
 
     app.post("/api/notes", function(req, res){
-        ArticleController.addNote(req.body, function(data){
+        ArticleController.addNote(req.body, function(err, data){
             res.json(data);
             console.log("note created");
+        });
+    })
+
+    app.get("/api/populate/:id", function(req, res){
+        ArticleController.populateNotes(req.params.id, function(err, data){
+            res.json(data);
+            console.log("article populated");
         });
     })
 };

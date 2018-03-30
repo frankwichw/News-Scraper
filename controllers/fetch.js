@@ -16,7 +16,7 @@ module.exports = {
     read: function(query, callback){
         Article.find(query).then(function(res){
             callback(res);
-        })
+        });
     },
     saveArticle: function(query, callback){
         Article.update({_id: query.id}, {$set: {saved: true}}, {}, callback);
@@ -24,32 +24,24 @@ module.exports = {
     addNote: function(query, callback){
         console.log("query below");
         console.log(query);
-        // Note.create(query, function(err, res){
-        //     callback(err, res);
-        // });
 
-        // Note.create(query)
-        //     .then(function(newNote) {  
-        //         return Article.findOneAndUpdate({_id: newNote._articleId}, { $push: { notes: newNote._id } }, { new: true });
-        // })
-        //     .then(function(data) {
-        //         callback(data);
-        // })
-        //     .catch(function(err) {
-        //         callback(err);
-        // });
-
-        Note.create(query, function(err, res) {
-            // log errors
-            if (err) {
-              console.log(err);
-            }
-            // log result
-            else {
-              console.log(res);
-              callback(res);
-            }
+        Note.create(query)
+            .then(function(newNote) {  
+                Article.findOneAndUpdate({_id: newNote.articleId}, { $push: { note: newNote._id } }, { new: true });
+        })
+            .then(function(data) {
+                callback(data);
+        })
+            .catch(function(err) {
+                callback(err);
         });
-
-        }
+    },
+    populateNotes: function(query, callback){
+        Article.findOne({_id: query})
+            .populate("note")
+            .then(function(newArticle) {
+                callback(newArticle);
+        });
+    }
+    
 }

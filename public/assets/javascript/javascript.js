@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    // $('.fixed-action-btn').floatingActionButton();
     $('.modal').modal();
 
     var scrapeArticles = function(){
@@ -94,6 +93,19 @@ $(document).ready(function(){
         });
     };
 
+    var populate = function(){
+        articleToPopulateId = {
+            id: articleId
+        };
+
+        $.ajax("/api/populate", {
+            type: "GET",
+            data: articleToPopulateId
+        }).then(function(){
+            console.log("populated");
+        });
+    }
+
     var clickedArticleId;
 
     $(".saved-article-div").on("click", ".add-note", function(){
@@ -107,7 +119,7 @@ $(document).ready(function(){
 
     $("#submit-button").on("click", function(){
         var noteBody = {
-            _articleId: clickedArticleId,
+            articleId: clickedArticleId,
             body: $("#note").val().trim()
         };
         
@@ -119,6 +131,8 @@ $(document).ready(function(){
                 console.log("note added");
             }
         );
+
+        populate();
     });
 
     initiateSavedPage();

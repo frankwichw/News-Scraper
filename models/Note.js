@@ -5,6 +5,10 @@ var Schema = mongoose.Schema;
 
 // using schema constructor to make model of note documents
 var NoteConstructor = new Schema({
+  articleId: {
+    type: String,
+    required: true
+  },
   body: {
       type: String,
       required: true
