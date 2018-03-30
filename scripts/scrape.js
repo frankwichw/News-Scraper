@@ -26,6 +26,7 @@ var Scraper = function(callback) {
             var articleObj = {
                 title: articleTitle,
                 url: articleURL,
+                saved: false
             };
 
             if(articleObj.title.length > 0){

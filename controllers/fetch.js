@@ -13,12 +13,11 @@ module.exports = {
         });
     },
     read: function(query, callback){
-        Article.find(query).then(function(err, res){
-            console.log(res);
-            callback(err, res);
+        Article.find(query).then(function(res){
+            callback(res);
         })
     },
     saveArticle: function(query, callback){
-        Article.update({_id: query._id}, {$set: {saved: true}}, {}, callback);
+        Article.update({_id: query.id}, {$set: {saved: true}}, {}, callback);
     }
 }

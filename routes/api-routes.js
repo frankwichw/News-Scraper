@@ -8,6 +8,10 @@ module.exports = function (app) {
         res.render("index");
     });
 
+    app.get("/saved", function(req, res){
+        res.render("saved");
+    })
+
     app.get("/api/scrape", function(req, res){
         ArticleController.scrape(function(err, articles){
             if(articles) {
@@ -24,9 +28,21 @@ module.exports = function (app) {
     });
 
     app.get("/api/unsaved", function(req, res){
-        ArticleController.read(function(err, data){
-            console.log(data);
+        ArticleController.read({saved: false}, function(data){
             res.json(data);
         });
+    });
+
+    app.get("/api/saved", function(req, res){
+        ArticleController.read({saved: true}, function(data){
+            res.json(data);
+        });
+    });
+
+    app.put("/api/savearticle", function(req, res){
+        console.log(req.body);
+        ArticleController.saveArticle(req.body, function(res){
+            console.log("article updated");
+        })
     });
 };

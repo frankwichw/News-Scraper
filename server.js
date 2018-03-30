@@ -10,14 +10,12 @@ var db = require("./models");
 // initializing express
 var app = express();
 
-// routing
-// require("./routes/view-routes.js")(app);
-require("./routes/api-routes.js")(app);
-// require("./scripts/scrape.js")(app);
-
 // Use body-parser for handling form submissions
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+// routing
+require("./routes/api-routes.js")(app);
 
 // Use express.static to serve the public folder as a static directory
 app.use(express.static("public"));
