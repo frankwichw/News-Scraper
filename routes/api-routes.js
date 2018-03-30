@@ -40,9 +40,15 @@ module.exports = function (app) {
     });
 
     app.put("/api/savearticle", function(req, res){
-        console.log(req.body);
         ArticleController.saveArticle(req.body, function(res){
             console.log("article updated");
         })
     });
+
+    app.post("/api/notes", function(req, res){
+        ArticleController.addNote(req.body, function(data){
+            res.json(data);
+            console.log("note created");
+        });
+    })
 };
