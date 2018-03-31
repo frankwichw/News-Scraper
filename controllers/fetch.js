@@ -27,7 +27,7 @@ module.exports = {
 
         Note.create(query)
             .then(function(newNote) {  
-                Article.findOneAndUpdate({_id: newNote.articleId}, { $push: { note: newNote._id } }, { new: true });
+                Article.findOneAndUpdate({_id: newNote.articleId}, { $set: { note: newNote._id } }, { new: true });
         })
             .then(function(data) {
                 callback(data);

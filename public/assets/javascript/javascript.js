@@ -98,7 +98,7 @@ $(document).ready(function(){
             id: articleId
         };
 
-        $.ajax("/api/populate", {
+        $.ajax("/api/populate/" + articleId, {
             type: "GET",
             data: articleToPopulateId
         }).then(function(){
@@ -129,10 +129,11 @@ $(document).ready(function(){
         }).then(
             function() {
                 console.log("note added");
+                populate();
             }
         );
 
-        populate();
+   
     });
 
     initiateSavedPage();
