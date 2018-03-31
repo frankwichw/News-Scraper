@@ -23,5 +23,7 @@ This part is easy! Just go to the app's [Heroku page](https://secret-stream-1605
 
 ## Notes to Keep in Mind
 
-    * Some functionality is still being worked out, currently notes cannot be viewed after submission, however they are recorded to the database, don't worry ;)
-    * Sometimes scraped/saved articles don't automatically get reloaded; if it looks like nothing happened after you clicked a button, try reloading the page.
+    * Some functionality is still being worked out, currently notes cannot be viewed after submission,
+    however they are recorded to the database, don't worry ;)
+    * Sometimes scraped/saved articles don't automatically get reloaded; if it looks like nothing
+    happened after you clicked a button, try reloading the page.
